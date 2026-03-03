@@ -1,0 +1,34 @@
+[Added Associations]
+application/json=code.desktop;
+application/pdf=vivaldi-stable.desktop;calibre-gui.desktop;org.gimp.GIMP.desktop;calibre-ebook-viewer.desktop;firefox.desktop;libreoffice-draw.desktop;gimp.desktop;
+application/vnd.openxmlformats-officedocument.wordprocessingml.document=libreoffice.desktop;
+application/vnd.rar=ark.desktop;
+application/x-ms-shortcut=wine-10.desktop;/home/iagodt/.local/share/applications/wine-9.desktop;
+application/x-msdownload=wine-3.desktop;wine-2.desktop;
+application/x-pcapng=wireshark.desktop;
+image/gif=qview-4.desktop;qview-3.desktop;
+image/jpeg=com.interversehq.qView.desktop;vivaldi-stable.desktop;qview-2.desktop;qview.desktop;firefox.desktop;
+image/png=com.interversehq.qView.desktop;vivaldi-stable.desktop;firefox.desktop;
+text/plain=code-2.desktop;
+
+[Default Applications]
+application/json=code.desktop;
+application/pdf=vivaldi-stable.desktop;
+application/vnd.openxmlformats-officedocument.wordprocessingml.document=libreoffice.desktop;
+application/vnd.rar=ark.desktop;
+application/x-ms-shortcut=wine-10.desktop;
+application/x-msdownload=wine-3.desktop;
+application/x-pcapng=wireshark.desktop;
+image/gif=qview-4.desktop;
+image/jpeg=com.interversehq.qView.desktop;
+image/png=com.interversehq.qView.desktop;
+text/html=vivaldi-stable.desktop
+text/plain=code-2.desktop;
+x-scheme-handler/about=vivaldi-stable.desktop
+x-scheme-handler/http=vivaldi-stable.desktop
+x-scheme-handler/https=vivaldi-stable.desktop
+x-scheme-handler/hydralauncher=hydralauncher.desktop
+x-scheme-handler/unknown=vivaldi-stable.desktop
+
+[Removed Associations]
+application/vnd.openxmlformats-officedocument.wordprocessingml.document=libreoffice.desktop;libreoffice-writer.desktop;org.kde.ark.desktop;org.prismlauncher.PrismLauncher.desktop;
