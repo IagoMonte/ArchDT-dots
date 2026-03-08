@@ -41,4 +41,3 @@ rgba_accent=${accent#?}
 
 hyprctl keyword general:col.active_border "0xff$rgba_accent"
 hyprctl keyword general:col.inactive_border "0xff$rgba_background"
-/bin/bash ~/.config/wal/hooks/rofi-theme.sh
