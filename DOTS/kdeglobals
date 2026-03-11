@@ -1,5 +1,6 @@
 [General]
 TerminalApplication=kitty
+ColorScheme=BreezeDark
 
 [Icons]
 Theme=Papirus-Dark
