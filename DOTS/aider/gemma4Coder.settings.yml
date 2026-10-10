@@ -1,0 +1,50 @@
+# ~/.aider.model.settings.yml
+
+- name: openai/gemmaCoder
+
+  ############################
+  # Contexto
+  ############################
+
+  # Você tem 96k mas usar tudo piora MUITO a UX
+  extra_params:
+    num_ctx: 32768
+
+  ############################
+  # Qualidade de coding
+  ############################
+
+  #use_temperature: true
+  #temperature: 0.15
+  #top_p: 0.9
+
+  ############################
+  # Respostas
+  ############################
+
+  #extra_headers:
+    #x-verbose: "false"
+
+  ############################
+  # Aider
+  ############################
+  
+  ############################
+  # Performance
+  ############################
+
+  #cache_control: true
+  #caches_by_default: true
+
+  ############################
+  # Comportamento
+  ############################
+
+  #reminders_as_sys_msg: true
+ # lazy: false
+
+  ############################
+  # Tokens
+  ############################
+
+  #max_chat_history_tokens: 24576

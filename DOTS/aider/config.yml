@@ -1,0 +1,70 @@
+# ~/.config/aider/gemma.yml
+###############
+# Linguagem
+###############
+chat-language: PT-BR
+
+###############
+# Modelo
+###############
+openai-api-base: http://127.0.0.1:11434/v1
+openai-api-key: aider
+
+model-settings-file: ~/.config/aider/gemma4Coder.settings.yml
+
+model: openai/gemmaCoder
+
+edit-format: whole
+
+show-model-warnings: false
+###############
+# Skills globais
+###############
+
+read:
+  - ~/.config/aider/skills/front-end.md
+  - ~/.config/aider/skills/tailwind.md
+#  - /home/iagodt/.config/aider/skills/skills.md
+#  - /home/iagodt/.config/aider/skills/backend.md
+#  - /home/iagodt/.config/aider/skills/archlinux.md
+#  - /home/iagodt/.config/aider/skills/clean-code.md
+  
+
+###############
+# Otimização
+###############
+
+#stream: true
+#cache-prompts: true
+#subtree-only: false
+
+#map-tokens: 2048 #4096 
+
+#max-chat-history-tokens: 24576
+
+#detect-urls: false
+#verbose: false
+
+###############
+# Git
+###############
+
+#git: true
+#gitignore: true
+
+#auto-commits: false
+#dirty-commits: false
+
+###############
+# Interface
+###############
+
+pretty: true
+dark-mode: true
+
+###############
+# Segurança
+###############
+
+#auto-test: false
+#auto-lint: false
