@@ -1,7 +1,7 @@
 [Added Associations]
 application/json=code.desktop;
 application/pdf=vivaldi-stable.desktop;calibre-gui.desktop;org.gimp.GIMP.desktop;calibre-ebook-viewer.desktop;firefox.desktop;libreoffice-draw.desktop;gimp.desktop;
-application/vnd.openxmlformats-officedocument.wordprocessingml.document=libreoffice.desktop;
+application/vnd.openxmlformats-officedocument.wordprocessingml.document=libreoffice-writer.desktop;libreoffice.desktop;
 application/vnd.rar=ark.desktop;
 application/x-ms-shortcut=wine-10.desktop;/home/iagodt/.local/share/applications/wine-9.desktop;
 application/x-msdownload=wine-3.desktop;wine-2.desktop;
@@ -10,11 +10,12 @@ image/gif=qview-4.desktop;qview-3.desktop;
 image/jpeg=com.interversehq.qView.desktop;vivaldi-stable.desktop;qview-2.desktop;qview.desktop;firefox.desktop;
 image/png=com.interversehq.qView.desktop;vivaldi-stable.desktop;firefox.desktop;
 text/plain=code-2.desktop;
+text/x-log=code.desktop;vim.desktop;libreoffice-writer.desktop;
 
 [Default Applications]
 application/json=code.desktop;
 application/pdf=vivaldi-stable.desktop;
-application/vnd.openxmlformats-officedocument.wordprocessingml.document=libreoffice.desktop;
+application/vnd.openxmlformats-officedocument.wordprocessingml.document=libreoffice-writer.desktop;
 application/vnd.rar=ark.desktop;
 application/x-ms-shortcut=wine-10.desktop;
 application/x-msdownload=wine-3.desktop;
@@ -24,7 +25,10 @@ image/jpeg=com.interversehq.qView.desktop;
 image/png=com.interversehq.qView.desktop;
 text/html=vivaldi-stable.desktop
 text/plain=code-2.desktop;
+text/x-log=code.desktop;
 x-scheme-handler/about=vivaldi-stable.desktop
+x-scheme-handler/claude=com.anthropic.Claude.desktop
+x-scheme-handler/claude-cli=claude-code-url-handler.desktop
 x-scheme-handler/http=vivaldi-stable.desktop
 x-scheme-handler/https=vivaldi-stable.desktop
 x-scheme-handler/hydralauncher=hydralauncher.desktop

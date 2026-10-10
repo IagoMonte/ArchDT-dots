@@ -21,7 +21,7 @@ if [ ${#wallpapers[@]} -eq 0 ]; then
     selectedWallpaper="${wallpapers[$wallpaperIndex]}"
 
     # Update the wallpaper using the swww img command
-    swww img "$selectedWallpaper" && wal -i "$selectedWallpaper"
+    awww img "$selectedWallpaper" && wal -i "$selectedWallpaper"
 
 WAL_COLORS="$HOME/.cache/wal/colors.json"
 

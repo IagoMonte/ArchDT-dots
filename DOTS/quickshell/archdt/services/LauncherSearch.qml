@@ -98,10 +98,11 @@ Singleton {
 
     Process {
         id: mathProc
-        property list<string> baseCommand: ["qalc", "-t"]
+        property list<string> baseCommand: ["bc"]
         function calculateExpression(expression) {
             mathProc.running = false;
-            mathProc.command = baseCommand.concat(expression);
+            mathProc.command = baseCommand;
+            mathProc.input = expression;
             mathProc.running = true;
         }
         stdout: SplitParser {

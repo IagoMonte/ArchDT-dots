@@ -28,5 +28,11 @@ else
 fi
 
 alias ls='ls --color=auto'
-
+alias aider-config='aider -c ~/.config/aider/config.yml'
 eval "$(starship init bash)"
+# uv
+export PATH="/home/iagodt/.local/bin:$PATH"
+
+source '/home/iagodt/.bash_completions/comfy.sh'
+
+

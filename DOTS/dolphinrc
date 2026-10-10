@@ -1,9 +1,18 @@
+[ExtractDialog]
+1920x1080 screen: Window-Maximized=true
+
+[FoldersPanel]
+HiddenFilesShown=true
+
 [General]
 Version=202
 ViewPropsTimestamp=2025,6,19,18,35,46.382
 
 [IconsMode]
-PreviewSize=224
+PreviewSize=128
+
+[InformationPanel]
+previewsShown=false
 
 [KFileDialog Settings]
 Places Icons Auto-resize=false
@@ -12,5 +21,11 @@ Places Icons Static Size=22
 [MainWindow]
 MenuBar=Disabled
 
-[ViewPropertiesDialog]
-1920x1080 screen: Window-Maximized=true
+[PreviewSettings]
+Plugins=appimagethumbnail,audiothumbnail,glycin-heif,comicbookthumbnail,cursorthumbnail,djvuthumbnail,ebookthumbnail,exrthumbnail,directorythumbnail,imagethumbnail,glycin-image-rs,jpegthumbnail,glycin-jxl,kraorathumbnail,windowsexethumbnail,windowsimagethumbnail,opendocumentthumbnail,glycin-svg,svgthumbnail
+
+[UiSettings]
+ColorScheme=BreezeDark
+
+[VersionControl]
+enabledPlugins=Git
