@@ -2,8 +2,6 @@
 
 Meu setup Arch + Hyprland com theming dinâmico (pywal + awww + Quickshell).
 
-> 🚧 Showcase com prints reais entra aqui — capturas pendentes (ver `assets/screenshots/`).
-
 ## Showcase
 
 | Desktop limpo | Bar + Sidebar |
