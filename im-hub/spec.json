@@ -1,0 +1,110 @@
+{
+  "version": 1,
+  "slug": "archdt-dots",
+  "title": {
+    "pt": "ArchDT-dots"
+  },
+  "summary": {
+    "pt": "Setup Arch + Hyprland com theming dinâmico via pywal, shell Quickshell e instalador standalone com backup."
+  },
+  "status": "live",
+  "category": {
+    "slug": "sistema-operacional",
+    "name": {
+      "pt": "sistema operacional"
+    },
+    "tagline": {
+      "pt": "Ambiente e dotfiles: compositor, bar, terminal e theming dinâmico."
+    },
+    "colors": [
+      "#C080C0",
+      "#000000"
+    ],
+    "fx": "tiling"
+  },
+  "stack": [
+    "Hyprland",
+    "Quickshell",
+    "pywal",
+    "kitty",
+    "Bash",
+    "awww"
+  ],
+  "facts": {
+    "role": {
+      "pt": "Autor e desenvolvedor"
+    },
+    "period": {
+      "start": "2026-02",
+      "end": "atual"
+    },
+    "context": {
+      "pt": "projeto pessoal"
+    }
+  },
+  "links": [
+    {
+      "kind": "repo",
+      "url": "https://github.com/IagoMonte/ArchDT-dots"
+    }
+  ],
+  "thumbnail": "thumbnail.png",
+  "shots": [
+    {
+      "file": "shots/01-desktop.png",
+      "caption": {
+        "pt": "desktop limpo com wallpaper e theming pywal"
+      },
+      "format": "desktop"
+    },
+    {
+      "file": "shots/02-bar-sidebar.png",
+      "caption": {
+        "pt": "bar e sidebar do shell Quickshell"
+      },
+      "format": "desktop"
+    },
+    {
+      "file": "shots/03-overview.png",
+      "caption": {
+        "pt": "overview e launcher de janelas"
+      },
+      "format": "desktop"
+    },
+    {
+      "file": "shots/04-terminal.png",
+      "caption": {
+        "pt": "terminal kitty com fastfetch tematizado"
+      },
+      "format": "desktop"
+    },
+    {
+      "file": "shots/05-wlogout.png",
+      "caption": {
+        "pt": "tela de logout com wlogout"
+      },
+      "format": "desktop"
+    },
+    {
+      "file": "shots/06-alt-theme.png",
+      "caption": {
+        "pt": "tema alternativo gerado pelo pywal"
+      },
+      "format": "desktop"
+    }
+  ],
+  "docs": [
+    {
+      "name": "README",
+      "file": "docs/readme.md"
+    },
+    {
+      "name": "ARQUITETURA",
+      "file": "docs/arquitetura.md"
+    },
+    {
+      "name": "CHANGELOG",
+      "file": "docs/changelog.md"
+    }
+  ]
+}
