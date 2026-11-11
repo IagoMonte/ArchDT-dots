@@ -22,7 +22,7 @@ As cores mudam dinamicamente com o wallpaper via `pywal`: kitty, starship, gtk/q
 
 | Parte | App |
 |---|---|
-| Compositor | Hyprland (config modular em `hypr/conf/*.conf`) |
+| Compositor | Hyprland (config modular em `hypr/conf/*.lua`) |
 | Shell/bar/launcher | Quickshell (`quickshell/archdt/`, `qs -p ~/.config/quickshell/archdt/`) |
 | Terminal | kitty + starship (gerado pelo pywal em `wal/templates/starship.toml`) |
 | Wallpaper | awww-daemon + waypaper (backend `awww`) + timer `change_wallpaper` |
@@ -46,7 +46,7 @@ As cores mudam dinamicamente com o wallpaper via `pywal`: kitty, starship, gtk/q
 | `SUPER + SHIFT + S / R` | screenshot / screen record |
 | `SUPER + SHIFT + W` | wallpaper aleatório |
 
-Lista completa em `DOTS/hypr/conf/binds.conf` (59 binds).
+Lista completa em `DOTS/hypr/conf/binds.lua` (59 binds).
 
 ## Instalação
 
@@ -96,7 +96,7 @@ ArchDT-dots/
 ├── .bashrc                  # prompt starship + aliases
 ├── Wallpaper/current/       # 140+ wallpapers
 ├── DOTS/                    # espelho de ~/.config/
-│   ├── hypr/conf/*.conf     # hyprland modular (binds, autostart, layouts...)
+│   ├── hypr/conf/*.lua     # hyprland modular (binds, autostart, layouts...)
 │   ├── quickshell/archdt/   # shell (bar, sidebar, overview, OSD...)
 │   ├── kitty/kitty.conf     # inclui colors-kitty do pywal
 │   ├── wal/templates/       # starship.toml gerado pelo pywal

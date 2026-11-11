@@ -5,15 +5,15 @@ import os
 from typing import Dict, List
 
 
-COLUMN_MARKER = "# >>>"  # Títulos grandes (colunas)
-SECTION_MARKER = "# >>"   # Subtítulos (seções)
+COLUMN_MARKER = "-- >>>"  # Títulos grandes (colunas)
+SECTION_MARKER = "-- >>"   # Subtítulos (seções)
 HIDE_COMMENT = "[hidden]"
 MOD_SEPARATORS = ['+', ' ']
-COMMENT_BIND_PATTERN = "#/#"
+COMMENT_BIND_PATTERN = "--/#"
 
 
 parser = argparse.ArgumentParser(description='Hyprland keybind reader')
-parser.add_argument('--path', type=str, default="$HOME/.config/hypr/hyprland.conf", help='path to keybind file')
+parser.add_argument('--path', type=str, default="$HOME/.config/hypr/conf/binds.lua", help='path to keybind file')
 args = parser.parse_args()
 content_lines = []
 reading_line = 0
@@ -103,36 +103,81 @@ def autogenerate_comment(dispatcher: str, params: str = "") -> str:
             return ""
 
 
-def get_keybind_at_line(line_number, line_start=0):
-    global content_lines
-    line = content_lines[line_number]
-    _, keys = line.split("=", 1)
-    keys, *comment = keys.split("#", 1)
+def split_mods(mods_str: str) -> List[str]:
+    return [m.strip() for m in mods_str.split("+") if m.strip()]
 
-    mods, key, dispatcher, *params = list(map(str.strip, keys.split(",", 4)))
-    params = "".join(map(str.strip, params))
 
-    comment = list(map(str.strip, comment))
-    if comment:
-        comment = comment[0]
-        if comment.startswith(HIDE_COMMENT):
-            return None
-    else:
+def split_args(text: str) -> List[str]:
+    """Divide argumentos de topo de uma chamada Lua, respeitando strings e parenteses."""
+    args, depth, quote, cur = [], 0, None, ""
+    for ch in text:
+        if quote:
+            cur += ch
+            if ch == quote:
+                quote = None
+        elif ch in "\"'":
+            quote = ch
+            cur += ch
+        elif ch in "({[":
+            depth += 1
+            cur += ch
+        elif ch in ")}]":
+            depth -= 1
+            cur += ch
+        elif ch == "," and depth == 0:
+            args.append(cur.strip())
+            cur = ""
+        else:
+            cur += ch
+    if cur.strip():
+        args.append(cur.strip())
+    return args
+
+
+def unquote(text: str) -> str:
+    text = text.strip()
+    if len(text) >= 2 and text[0] in "\"'" and text[-1] == text[0]:
+        return text[1:-1]
+    return text
+
+
+def make_keybind(keys: str, dispatcher: str, params: str, comment: str):
+    if comment.startswith(HIDE_COMMENT):
+        return None
+    parts = split_mods(keys)
+    key = parts[-1] if parts else ""
+    mods = parts[:-1]
+    if not comment:
         comment = autogenerate_comment(dispatcher, params)
-
-    if mods:
-        modstring = mods + MOD_SEPARATORS[0]
-        mods = []
-        p = 0
-        for index, char in enumerate(modstring):
-            if char in MOD_SEPARATORS:
-                if index - p > 1:
-                    mods.append(modstring[p:index])
-                p = index + 1
-    else:
-        mods = []
-
     return KeyBinding(mods, key, dispatcher, params, comment)
+
+
+def get_fake_keybind(line: str):
+    """Linha `--/# MODS | KEY | descricao` so para exibir no cheatsheet."""
+    fields = [f.strip() for f in line[len(COMMENT_BIND_PATTERN):].split("|", 2)]
+    if len(fields) < 3:
+        return None
+    mods, key, comment = fields
+    return make_keybind(mods + " + " + key if mods else key, "", "", comment)
+
+
+def get_keybind_at_line(line: str):
+    """Le `bind("MODS + KEY", dispatcher, "descricao"[, opts])` (bind/binde/bindm/bindrt)."""
+    m = re.match(r"bind[a-z]*\((.*)\)\s*(--.*)?$", line.strip())
+    if not m:
+        return None
+    args = split_args(m.group(1))
+    if len(args) < 2:
+        return None
+    keys = args[0]
+    if ".." in keys:
+        # mainMod .. " + KEY"  ->  SUPER + KEY
+        keys = "SUPER" + unquote(keys.split("..", 1)[1])
+    else:
+        keys = unquote(keys)
+    comment = unquote(args[2]) if len(args) > 2 else ""
+    dispatcher = args[1]
+    return make_keybind(keys, dispatcher, "", comment)
 
 
 def parse_keys(path: str) -> Dict:
@@ -140,7 +185,7 @@ def parse_keys(path: str) -> Dict:
     global reading_line
     
     content_lines = read_content(path).splitlines()
-    if content_lines[0] == "error":
+    if not content_lines or content_lines[0] == "error":
         return {"children": [], "keybinds": [], "name": ""}
     
     root = Section([], [], "")
@@ -166,7 +211,7 @@ def parse_keys(path: str) -> Dict:
         
         # Keybind com comentário especial (#/#)
         elif stripped.startswith(COMMENT_BIND_PATTERN):
-            keybind = get_keybind_at_line(reading_line, line_start=len(COMMENT_BIND_PATTERN))
+            keybind = get_fake_keybind(stripped)
             if keybind is not None:
                 if current_section is not None:
                     current_section["keybinds"].append(keybind)
@@ -177,8 +222,7 @@ def parse_keys(path: str) -> Dict:
         
         # Keybind normal
         elif stripped.startswith("bind"):
-            reading_line_temp = content_lines.index(line)
-            keybind = get_keybind_at_line(reading_line_temp)
+            keybind = get_keybind_at_line(stripped)
             if keybind is not None:
                 if current_section is not None:
                     current_section["keybinds"].append(keybind)
