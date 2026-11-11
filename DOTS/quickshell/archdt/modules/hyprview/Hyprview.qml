@@ -100,7 +100,7 @@ PanelWindow {
         function release() {
             if (root.switcherMode) {
                 if (!root.userNavigated && root.lastWorkspaceId !== -1 && root.lastWorkspaceId !== root.currentWorkspaceId) {
-                    Hyprland.dispatch(`workspace ${root.lastWorkspaceId.toString()}`)
+                    Hyprland.dispatch(`hl.dsp.focus({ workspace = ${root.lastWorkspaceId.toString()} })`)
                     root.closeSwitcher()
                 } else {
                     root.activateSelectedWindow()

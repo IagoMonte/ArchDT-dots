@@ -133,7 +133,7 @@ Item {
         var targetIsSpecial = (hWin?.workspace ?? 0) < 0 || (hWin?.workspace?.name ?? "").startsWith("special")
 
         if (root.specialActive && !targetIsSpecial) {
-            Hyprland.dispatch("togglespecialworkspace")
+            Hyprland.dispatch('hl.dsp.workspace.toggle_special("")')
         }
 
         if (hWin.workspace) {
@@ -141,19 +141,19 @@ Item {
         }
 
         root.toggleExpose()
-        Hyprland.dispatch("focuswindow address:0x" + hWin.address)
-        Hyprland.dispatch("alterzorder top")
+        Hyprland.dispatch('hl.dsp.focus({ window = "address:0x' + hWin.address + '" })')
+        Hyprland.dispatch('hl.dsp.window.alter_zorder({ mode = "top" })')
         if (thumbContainer.moveCursorToActiveWindow) {
           var cx = clientInfo.at[0] + (clientInfo.size[0]/2)
           var cy = clientInfo.at[1] + (clientInfo.size[1]/2)
-        Hyprland.dispatch("movecursor " + cx + " " + cy)
+        Hyprland.dispatch("hl.dsp.cursor.move({ x = " + cx + ", y = " + cy + " })")
 
         }
     }
 
     function closeWindow() {
         if (!hWin) return
-        Hyprland.dispatch("closewindow address:0x" + hWin.address)
+        Hyprland.dispatch('hl.dsp.window.close({ window = "address:0x' + hWin.address + '" })')
     }
 
     function refreshThumb() {

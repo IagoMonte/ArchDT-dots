@@ -14,5 +14,4 @@ rgba_background=${background#?}
 rgba_accent=${accent#?}
 
 
-hyprctl keyword general:col.active_border "0xff$rgba_accent"
-hyprctl keyword general:col.inactive_border "0xff$rgba_background"
+hyprctl eval "hl.config({ general = { col = { active_border = \"0xff$rgba_accent\", inactive_border = \"0xff$rgba_background\" } } })"
