@@ -39,8 +39,8 @@ bind(mainMod .. " + E", dsp.exec_cmd("dolphin"), "Opens the filemanager")
 bind(mainMod .. " + P", dsp.exec_cmd("vivaldi"), "Opens the browser")
 
 -- >> System
-bind(mainMod .. " + M",         dsp.exit(),                                                  "Exit Hyprland")
-bind(mainMod .. " + SHIFT + B", dsp.exec_cmd("~/.config/hypr/scripts/reload-waybar.sh"),     "Reload Waybar")
+bind(mainMod .. " + CTRL + SHIFT + K", dsp.exit(),                                           "Exit Hyprland")
+bind(mainMod .. " + SHIFT + B", dsp.exec_cmd("~/.config/hypr/scripts/reload-quickshell.sh"), "Reload Quickshell")
 bind(mainMod .. " + SHIFT + W", dsp.exec_cmd("~/.config/hypr/scripts/reload-hyprpaper.sh"),  "Random wallpaper")
 
 -- >>> Quickshell
@@ -55,6 +55,8 @@ bind(mainMod .. " + SPACE",  dsp.global("quickshell:overviewSearchToggle"),    "
 bind(mainMod .. " + Slash",  dsp.global("quickshell:cheatsheetToggle"),        "Toggle cheatsheet")
 bind(mainMod .. " + V",      dsp.global("quickshell:overviewClipboardToggle"), "Toggle clipboard")
 bind(mainMod .. " + period", dsp.global("quickshell:overviewEmojiToggle"),     "Toggle Emojis")
+bind(mainMod .. " + A",      dsp.exec_cmd("qs ipc -p .config/quickshell/archdt call sidebarRight toggle"),   "Toggle sidebar")
+bind(mainMod .. " + D",      dsp.exec_cmd("qs ipc -p .config/quickshell/archdt call mediaControls toggle"),  "Toggle media controls")
 
 -- >> Screenshots
 bind(mainMod .. " + SHIFT + S",        dsp.global("quickshell:regionScreenshot"),         "Screenshot")

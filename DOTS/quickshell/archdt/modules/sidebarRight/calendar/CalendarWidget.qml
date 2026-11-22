@@ -9,7 +9,16 @@ Item {
     // Layout.topMargin: 10
     anchors.topMargin: 10
     property int monthShift: 0
-    property var viewingDate: CalendarLayout.getDateInXMonthsTime(monthShift)
+    // Só muda quando o dia vira (número inteiro), assim o calendário se atualiza
+    // sem recalcular a cada minuto do relógio
+    readonly property int todayStamp: {
+        const d = DateTime.clock.date;
+        return d.getFullYear() * 10000 + d.getMonth() * 100 + d.getDate();
+    }
+    property var viewingDate: {
+        todayStamp; // dependência: refaz quando o dia mudar
+        return CalendarLayout.getDateInXMonthsTime(monthShift);
+    }
     property var calendarLayout: CalendarLayout.getCalendarLayout(viewingDate, monthShift === 0)
     width: calendarColumn.width
     implicitHeight: calendarColumn.height + 10 * 2

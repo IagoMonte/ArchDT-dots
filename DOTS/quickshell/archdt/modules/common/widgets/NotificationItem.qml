@@ -73,6 +73,13 @@ Item { // Notification item area
         onClicked: (mouse) => {
             if (mouse.button === Qt.MiddleButton) {
                 root.destroyWithAnimation();
+            } else if (mouse.button === Qt.LeftButton
+                    && Math.abs(mouse.x - startX) < 8 && Math.abs(mouse.y - startY) < 8) { // Ignora o fim de um arrasto
+                // Clique: vai direto para o app que mandou a notificação
+                if (Notifications.openNotificationApp(root.notificationObject.notificationId)) {
+                    GlobalStates.sidebarRightOpen = false;
+                    root.destroyWithAnimation();
+                }
             }
         }
 

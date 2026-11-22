@@ -17,7 +17,8 @@ Scope {
     property bool visible: false
     readonly property MprisPlayer activePlayer: MprisController.activePlayer
     readonly property var realPlayers: MprisController.players
-    readonly property var meaningfulPlayers: filterDuplicatePlayers(realPlayers)
+    // Ignora players "fantasma" (ex.: navegador que registra MPRIS sem nenhuma mídia: "Untitled 0:00")
+    readonly property var meaningfulPlayers: filterDuplicatePlayers(realPlayers.filter(p => p.isPlaying || (p.trackTitle?.length ?? 0) > 0))
     readonly property real osdWidth: Appearance.sizes.osdWidth
     readonly property real widgetWidth: Appearance.sizes.mediaControlsWidth
     readonly property real widgetHeight: Appearance.sizes.mediaControlsHeight
@@ -164,13 +165,8 @@ Scope {
                             anchors.centerIn: parent
 
                             StyledText {
-                                text: "No active player"
+                                text: "Nada tocando"
                                 font.pixelSize: Appearance.font.pixelSize.large
-                            }
-                            StyledText {
-                                color: Appearance.colors.colSubtext
-                                text: "Make sure your player has MPRIS support\nor try turning off duplicate player filtering"
-                                font.pixelSize: Appearance.font.pixelSize.small
                             }
                         }
                     }

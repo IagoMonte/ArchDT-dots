@@ -265,14 +265,20 @@ Item { // Bar content region
         BarGroup {
             id: rightCenterGroup
             Layout.alignment: Qt.AlignVCenter
-            implicitWidth: root.centerSideModuleWidth
+            // Sem mídia: o grupo encolhe até caber só os recursos e o espaço volta
+            // para o ActiveWindow (que tem fillWidth). Com mídia: largura original.
+            readonly property bool hasMedia: (MprisController.activePlayer?.trackTitle?.length ?? 0) > 0
+            implicitWidth: (hasMedia || root.useShortenedForm === 2)
+                ? root.centerSideModuleWidth
+                : resourcesWidget.implicitWidth + padding * 2
 
             Media {
-                visible: root.useShortenedForm < 2
+                visible: root.useShortenedForm < 2 && rightCenterGroup.hasMedia
                 Layout.fillWidth: true
             }
 
             Resources {
+                id: resourcesWidget
                 alwaysShowAllResources: root.useShortenedForm === 2
                 Layout.fillWidth: root.useShortenedForm === 2
             }

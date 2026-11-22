@@ -6,6 +6,7 @@ import qs
 import QtQuick
 import Quickshell
 import Quickshell.Io
+import Quickshell.Hyprland
 import Quickshell.Services.Notifications
 
 /**
@@ -28,6 +29,7 @@ Singleton {
         property bool isTransient: notification?.hints.transient ?? false
         property string appIcon: notification?.appIcon ?? ""
         property string appName: notification?.appName ?? ""
+        property string desktopEntry: notification?.desktopEntry ?? "" // Não é persistido em disco
         property string body: notification?.body ?? ""
         property string image: notification?.image ?? ""
         property string summary: notification?.summary ?? ""
@@ -234,6 +236,49 @@ Singleton {
         root.popupList.forEach((notif) => {
             notif.popup = false;
         });
+    }
+
+    // Procura a janela do app que enviou a notificação (classe, classe inicial ou título)
+    // e leva o foco até ela, trocando de workspace se preciso. Retorna true se achou.
+    function focusWindowForApp(desktopEntry, appName) {
+        const norm = (s) => (s ?? "").toLowerCase().replace(/\.desktop$/, "").trim();
+        const keys = [norm(desktopEntry), norm(appName)].filter((k) => k.length >= 3);
+        if (keys.length === 0) return false;
+
+        const byClass = (w) => {
+            const cls = norm(w.class), initial = norm(w.initialClass);
+            return keys.some((k) => cls === k || initial === k
+                || (k.length >= 4 && (cls.includes(k) || initial.includes(k))));
+        };
+        const byTitle = (w) => keys.some((k) => k.length >= 4 && norm(w.title).includes(k));
+
+        const windows = HyprlandData.windowList;
+        let candidates = windows.filter(byClass);
+        if (candidates.length === 0) candidates = windows.filter(byTitle);
+        if (candidates.length === 0) return false;
+
+        // Prefere a janela focada mais recentemente (focusHistoryID menor = mais recente)
+        candidates.sort((a, b) => (a.focusHistoryID ?? 0) - (b.focusHistoryID ?? 0));
+        const target = candidates[0];
+
+        const workspaceId = target.workspace?.id ?? -1;
+        if (workspaceId > 0)
+            Hyprland.dispatch(`hl.dsp.focus({ workspace = ${workspaceId} })`);
+        Hyprland.dispatch(`hl.dsp.focus({ window = "address:${target.address}" })`);
+        return true;
+    }
+
+    // Clique na notificação: aciona a ação padrão do app (se ele oferecer, ex.: navegadores
+    // focam a própria aba) e leva o foco até a janela dele.
+    function openNotificationApp(id) {
+        const notif = root.list.find((n) => n.notificationId === id);
+        if (!notif) return false;
+
+        const serverNotif = notifServer.trackedNotifications.values.find((n) => n.id + root.idOffset === id);
+        const defaultAction = serverNotif?.actions.find((a) => a.identifier === "default");
+        if (defaultAction) defaultAction.invoke();
+
+        return root.focusWindowForApp(notif.desktopEntry, notif.appName);
     }
 
     function attemptInvokeAction(id, notifIdentifier) {

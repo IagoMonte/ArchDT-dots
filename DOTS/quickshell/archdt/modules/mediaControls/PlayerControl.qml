@@ -101,7 +101,9 @@ Item { // Player instance
         id: background
         anchors.fill: parent
         anchors.margins: Appearance.sizes.elevationMargin
-        color: "transparent"
+        // Base semi-opaca: sem capa de álbum o card ficava transparente e o texto
+        // se misturava com o conteúdo atrás dele
+        color: ColorUtils.transparentize(blendedColors.colLayer0, 0.35)
         radius: root.radius
 
         layer.enabled: true

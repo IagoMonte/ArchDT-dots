@@ -8,6 +8,13 @@ Item {
     id: root
     property bool borderless: Config.options.bar.borderless
     property bool showDate: Config.options.bar.verbose
+    readonly property bool pomodoroActive: TimerService.pomodoroRunning
+    readonly property string pomodoroText: {
+        const s = Math.max(0, TimerService.pomodoroSecondsLeft);
+        const mm = Math.floor(s / 60);
+        const ss = s % 60;
+        return `${mm < 10 ? "0" : ""}${mm}:${ss < 10 ? "0" : ""}${ss}`;
+    }
     implicitWidth: rowLayout.implicitWidth
     implicitHeight: Appearance.sizes.barHeight
 
@@ -23,14 +30,31 @@ Item {
         }
 
         StyledText {
-            visible: root.showDate
+            visible: root.showDate || root.pomodoroActive
             font.pixelSize: Appearance.font.pixelSize.small
             color: Appearance.colors.colOnLayer1
             text: "•"
         }
 
+        // Pomodoro rodando: o tempo restante ocupa o lugar da data (a data continua no popup)
+        RowLayout {
+            visible: root.pomodoroActive
+            spacing: 2
+
+            MaterialSymbol {
+                text: TimerService.pomodoroBreak ? "coffee" : "timer"
+                iconSize: Appearance.font.pixelSize.normal
+                color: Appearance.colors.colOnLayer1
+            }
+            StyledText {
+                font.pixelSize: Appearance.font.pixelSize.small
+                color: Appearance.colors.colOnLayer1
+                text: root.pomodoroText
+            }
+        }
+
         StyledText {
-            visible: root.showDate
+            visible: root.showDate && !root.pomodoroActive
             font.pixelSize: Appearance.font.pixelSize.small
             color: Appearance.colors.colOnLayer1
             text: DateTime.longDate
