@@ -8,7 +8,7 @@ Manter um desktop tiling bonito e um theming consistente entre terminal, bar, GT
 
 ## O que foi construído
 
-- `DOTS/`, espelho versionado de `~/.config/`: Hyprland modular (`hypr/conf/*.conf`, 59 atalhos), shell Quickshell `archdt` (bar, sidebar, overview, OSD), kitty + starship, swww/awww, waypaper, wlogout, qt5ct/qt6ct e GTK.
+- `DOTS/`, espelho versionado de `~/.config/`: Hyprland modular em Lua (`hyprland.lua` + `hypr/conf/*.lua`, mais de 60 atalhos), shell Quickshell `archdt` (bar, sidebar com pomodoro/to-do, overview, hyprview, cheatsheet, OSD), kitty + starship, swww/awww, waypaper, wlogout, qt5ct/qt6ct e GTK.
 - `install.sh` standalone: dry-run (`--check`), symlink ou cópia (`--copy`), pulo de pacotes (`--no-packages`), backup com timestamp em `~/.config-backup-archdt-*`.
 - Theming dinâmico: `wal` gera a paleta; kitty, starship e Quickshell acompanham. Timer `change_wallpaper` troca o papel de parede a cada hora.
 - Mais de 140 wallpapers em `Wallpaper/` e listas de pacotes (`packages.txt`, `packages-repo.txt`, `packages-aur.txt`).

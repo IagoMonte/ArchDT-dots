@@ -5,7 +5,7 @@
     "pt": "ArchDT-dots"
   },
   "summary": {
-    "pt": "Setup Arch + Hyprland com theming dinâmico via pywal, shell Quickshell e instalador standalone com backup."
+    "pt": "Setup Arch + Hyprland com theming dinâmico via pywal: as cores do sistema inteiro acompanham o wallpaper. Shell Quickshell próprio e instalador standalone com backup."
   },
   "status": "live",
   "category": {
@@ -53,42 +53,42 @@
     {
       "file": "shots/01-desktop.png",
       "caption": {
-        "pt": "desktop limpo com wallpaper e theming pywal"
+        "pt": "desktop com barra Quickshell e paleta vermelha gerada pelo pywal"
       },
       "format": "desktop"
     },
     {
       "file": "shots/02-bar-sidebar.png",
       "caption": {
-        "pt": "bar e sidebar do shell Quickshell"
+        "pt": "sidebar com toggles, notificações, to-do e pomodoro, em roxo"
       },
       "format": "desktop"
     },
     {
       "file": "shots/03-overview.png",
       "caption": {
-        "pt": "overview e launcher de janelas"
+        "pt": "overview/launcher com os workspaces, em verde: o tema acompanha o wallpaper"
       },
       "format": "desktop"
     },
     {
       "file": "shots/04-terminal.png",
       "caption": {
-        "pt": "terminal kitty com fastfetch tematizado"
+        "pt": "kitty + fastfetch tematizados em laranja pelo pywal"
       },
       "format": "desktop"
     },
     {
       "file": "shots/05-wlogout.png",
       "caption": {
-        "pt": "tela de logout com wlogout"
+        "pt": "tela de logout (wlogout) com a paleta azul"
       },
       "format": "desktop"
     },
     {
-      "file": "shots/06-alt-theme.png",
+      "file": "shots/06-cheatsheet.png",
       "caption": {
-        "pt": "tema alternativo gerado pelo pywal"
+        "pt": "cheatsheet de atalhos do Hyprland, gerado a partir do binds.lua"
       },
       "format": "desktop"
     }
