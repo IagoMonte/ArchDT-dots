@@ -4,7 +4,7 @@ Meu setup Arch + Hyprland com theming dinâmico (pywal + awww + Quickshell).
 
 ## Showcase
 
-| Desktop limpo | Bar + Sidebar |
+| Desktop limpo | Bar + Sidebar (pomodoro, to-do) |
 |---|---|
 | ![desktop](assets/screenshots/01-desktop.png) | ![bar-sidebar](assets/screenshots/02-bar-sidebar.png) |
 
@@ -12,11 +12,11 @@ Meu setup Arch + Hyprland com theming dinâmico (pywal + awww + Quickshell).
 |---|---|
 | ![overview](assets/screenshots/03-overview.png) | ![terminal](assets/screenshots/04-terminal.png) |
 
-| wlogout | Tema alternativo (pywal dinâmico) |
+| wlogout | Cheatsheet de atalhos |
 |---|---|
-| ![wlogout](assets/screenshots/05-wlogout.png) | ![alt-theme](assets/screenshots/06-alt-theme.png) |
+| ![wlogout](assets/screenshots/05-wlogout.png) | ![cheatsheet](assets/screenshots/06-cheatsheet.png) |
 
-As cores mudam dinamicamente com o wallpaper via `pywal`: kitty, starship, gtk/qt e o shell Quickshell acompanham o tema.
+Cada print usa um wallpaper diferente: as cores mudam dinamicamente com o wallpaper via `pywal`: kitty, starship, gtk/qt e o shell Quickshell acompanham o tema.
 
 ## Stack
 
@@ -46,7 +46,7 @@ As cores mudam dinamicamente com o wallpaper via `pywal`: kitty, starship, gtk/q
 | `SUPER + SHIFT + S / R` | screenshot / screen record |
 | `SUPER + SHIFT + W` | wallpaper aleatório |
 
-Lista completa em `DOTS/hypr/conf/binds.lua` (59 binds).
+Lista completa em `DOTS/hypr/conf/binds.lua` (mais de 60 binds).
 
 ## Instalação
 
@@ -96,7 +96,7 @@ ArchDT-dots/
 ├── .bashrc                  # prompt starship + aliases
 ├── Wallpaper/current/       # 140+ wallpapers
 ├── DOTS/                    # espelho de ~/.config/
-│   ├── hypr/conf/*.lua     # hyprland modular (binds, autostart, layouts...)
+│   ├── hypr/conf/*.lua      # hyprland modular (binds, autostart, layouts...)
 │   ├── quickshell/archdt/   # shell (bar, sidebar, overview, OSD...)
 │   ├── kitty/kitty.conf     # inclui colors-kitty do pywal
 │   ├── wal/templates/       # starship.toml gerado pelo pywal
